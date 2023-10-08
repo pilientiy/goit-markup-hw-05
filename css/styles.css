@@ -597,6 +597,7 @@ li {
   width: 24px;
   height: 24px;
   margin-right: 24px;
+  margin-left: 16px;
 }
 
 .footer-form {
@@ -605,6 +606,8 @@ li {
   justify-content: flex-start;
   gap: 24px;
 }
+
+
 /* MODAL STYLES */
 
 .backdrop {
@@ -614,15 +617,17 @@ li {
   height: 100%;
   background-color: rgba(46, 47, 66, 0.4);
   opacity: 0;
-  visibility: hidden;
+  visibility: 250ms cubic-bezier(0.4, 0, 0.2, 1);;
   pointer-events: none;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+  
 }
 
 .is-open {
   opacity: 1;
-  visibility: visible;
+  visibility: visible; 
   pointer-events: auto;
-}
+  }
 
 .modal {
   position: absolute;
@@ -634,6 +639,8 @@ li {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 72px 24px 24px 24px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal-btn {
@@ -643,22 +650,34 @@ li {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background-color: ##e7e9fc;
-  border: none;
-  position: absolute;
-  top: 24px;
-  right: 24px;
+  background-color: #e7e9fc;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  position:absolute;
+  top:24px;
+  right:24px;
+  cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal-btn-icon {
   fill: #2e2f42;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal-btn:hover .modal-btn-icon {
   fill: #ffffff;
 }
 
+.modal-btn:focus .modal-btn-icon {
+  fill: #ffffff;
+}
+
 .modal-btn:hover {
+  background-color: #404bbf;
+  border: none;
+}
+
+.modal-btn:focus {
   background-color: #404bbf;
   border: none;
 }
@@ -676,7 +695,7 @@ li {
   font-weight: 500;
   line-height: 24px; /* 150% */
   letter-spacing: 0.32px;
-  margin-bottom: 34px;
+  margin-bottom: 16px;
 }
 
 .modal-input {
@@ -687,7 +706,7 @@ li {
   background-color: transparent;
   padding-left: 38px;
   outline: transparent;
-  transition: border-color 300ms linear;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal-input:focus {
@@ -699,6 +718,7 @@ li {
 }
 
 .form-btn {
+  display: block;
   padding: 16px 32px;
   border-radius: 4px;
   background: var(--IRIS, #4d5ae5);
@@ -706,16 +726,18 @@ li {
   color: var(--WHITE, #fff);
   text-align: center;
   /* Button Text */
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif; 
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: 24px; /* 150% */
   letter-spacing: 0.64px;
-  width: 169px;
+  min-width: 169px;
   height: 56px;
   border: none;
   margin-left: 95px;
+  cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal-label {
@@ -726,10 +748,10 @@ li {
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  line-height: 14px; /* 116.667% */
+  line-height: 1.17; 
   letter-spacing: 0.48px;
   margin-bottom: 4px;
-}
+  }
 
 .modal-field {
   margin-bottom: 8px;
@@ -741,7 +763,7 @@ li {
   top: 50%;
   left: 16px;
   transform: translateY(-50%);
-  transition: fill 300ms linear;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .input-wrapper {
@@ -756,6 +778,17 @@ li {
   height: 120px;
   padding: 8px 16px;
   resize: none;
+  /*textarea text*/
+  font-size: 12px;
+  line-height: 1.17;
+  letter-spacing: 0.04em;
+  color: rgba(46, 47, 66, 0.4);
+  outline: transparent;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-textarea:focus {
+  border-color: #4D5AE5;
 }
 
 .modal-textarea::placeholder {
@@ -776,7 +809,7 @@ li {
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  line-height: 14px; /* 116.667% */
+  line-height: 1.17;
   letter-spacing: 0.48px;
   display: flex;
   align-items: center;
@@ -795,22 +828,23 @@ li {
 }
 
 .check-text-box {
-  display: block;
+  display: inline-flex;
   width: 16px;
   height: 16px;
-  border: 1px solid rgba(17, 17, 17, 0.14);
+  border: 1px solid rgba(46, 47, 66, 0.4);
   border-radius: 2px;
   margin-right: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   fill: transparent;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), border 250ms cubic-bezier(0.4, 0, 0.2, 1), fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal-check:checked + .check-text > .check-text-box {
   background-color: #404bbf;
   border: none;
-  fill: #fff;
+  fill: #F4F4FD;;
 }
 
 .modal-field-check-box {
